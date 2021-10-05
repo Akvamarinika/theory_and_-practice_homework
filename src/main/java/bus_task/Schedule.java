@@ -1,3 +1,7 @@
+package bus_task;
+
+import bus_task.EndWorkException;
+
 import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.Map;

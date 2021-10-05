@@ -1,3 +1,5 @@
+package bus_task;
+
 import java.time.LocalTime;
 
 public class TimeOfFlight {
