@@ -10,7 +10,7 @@ public class Calc {
         while (!answer.equals("no")) {
             try {
                 String[] arrStrings = input();
-                Object result = calculate(arrStrings);
+                Number result = calculate(arrStrings);
                 printResult(arrStrings, result);
             } catch (ArithmeticException ex) {
                 System.err.println("Error: " + ex.getMessage());
@@ -44,7 +44,7 @@ public class Calc {
         System.out.printf("%s %s %s = %s",inputArgs[0], inputArgs[1], inputArgs[2], result);
     }
 
-    public static <T> T calculate(String[] inputStrings) throws ArithmeticException{
+    public static Number calculate(String[] inputStrings) throws ArithmeticException{
         String operator = inputStrings[1];
         String num1Str = inputStrings[0];
         String num2Str = inputStrings[2];
@@ -56,12 +56,12 @@ public class Calc {
             int num2 = calcInt.convert(num2Str);
 
             if (operator.equals("/") && (num1 % num2) != 0){
-                return (T) calcDouble.calculate((double)num1, operator, (double)num2);
+                return calcDouble.calculate((double)num1, operator, (double)num2);
             }
 
-            return (T) calcInt.calculate(num1, operator, num2);
+            return calcInt.calculate(num1, operator, num2);
         } else {
-            return (T) calcDouble.calculate(calcDouble.convert(num1Str), operator, calcDouble.convert(num2Str));
+            return calcDouble.calculate(calcDouble.convert(num1Str), operator, calcDouble.convert(num2Str));
         }
     }
 
