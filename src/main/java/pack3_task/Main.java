@@ -1,16 +1,10 @@
 package pack3_task;
 import org.mariuszgromada.math.mxparser.Expression;
-
-import javax.script.ScriptEngine;
-import javax.script.ScriptEngineManager;
-import javax.script.ScriptException;
 import java.util.*;
-
 
 public class Main {
     private static Stack<String> stack = new Stack<>();
     private static Set<String> operators = new HashSet<>();
-
 
     public static void main(String[] args) {
         String input;
@@ -31,10 +25,8 @@ public class Main {
         }catch (IllegalArgumentException ex){
             System.err.println("Error: " + ex.getMessage());
         }
-
-
-
     }
+
     public static double calcExpression(String expression) throws IllegalArgumentException{
         Expression exp = new Expression(expression);
         double result = exp.calculate();
@@ -43,14 +35,6 @@ public class Main {
             throw new IllegalArgumentException("Argument 'divisor' is 0");
         }
 
-        //ScriptEngineManager scriptEngineManager = new ScriptEngineManager();
-        //ScriptEngine engine = scriptEngineManager.getEngineByName("JS");
-
-//        try {
-//            System.out.println(engine.eval(expression));
-//        } catch (ScriptException ex) {
-//            System.err.println(ex.getMessage());
-//        }
         return result;
     }
 
