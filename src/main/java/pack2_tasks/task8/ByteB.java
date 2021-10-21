@@ -1,7 +1,5 @@
 package pack2_tasks.task8;
 
-import java.util.Arrays;
-
 public class ByteB {
     public static final int MIN_VALUE_DEC = 0;
     public static final int MAX_VALUE_DEC = 255;
@@ -11,12 +9,7 @@ public class ByteB {
     public static final int ONE_BINARY = 1;
     public static final String PREFIX = "b0";
     private int decByte;
-    //int[] binaryByte = new int[8];
     private StringBuilder builder = new StringBuilder();
-
-   // public static final byte MIN_PLUS_VALUE = 0;
-  //  public static final byte MAX_PLUS_VALUE = 255;
-
 
     public ByteB(int val) {
         this.decByte = val;
@@ -47,7 +40,6 @@ public class ByteB {
                 builder.append(ZERO_BINARY);
             }
         }
-
 
         padBinaryNumberWithZeros();
 
@@ -101,8 +93,6 @@ public class ByteB {
         return builder.toString();
     }
 
-
-
     public void and(ByteB byte2){
         char[] tmpByte = builder.toString().toCharArray();
         char[] tmpByte2 = byte2.getBinary().toCharArray();
@@ -155,57 +145,29 @@ public class ByteB {
             }
 
         }
-        //System.out.println(tmpByte);
+
         builder = new StringBuilder(String.valueOf(tmpByte));
         updateDecNumber();
     }
 
     public void add(ByteB byte2){
-        char[] tmpByte = builder.toString().toCharArray();
-        char[] tmpByte2 = byte2.getBinary().toCharArray();
-        String bit;
-        String bit2;
-
-        for (int i = tmpByte2.length-2; i > 1; i--){
-            bit = String.valueOf(tmpByte[i]);
-            bit2 = String.valueOf(tmpByte2[i]);
-
-            if ((bit.equals("1") && bit2.equals("0")) || (bit.equals("0") && bit2.equals("1"))){
-                tmpByte[i] = '1';
-            } else if (bit.equals("1") && bit2.equals("1")){
-                for (int j = tmpByte2.length; j > i; j--){
-                    if (String.valueOf(tmpByte[j]).equals("0")){
-                        tmpByte[i] = '1';
-                    } else if (String.valueOf(tmpByte[j]).equals("b")){
-                        throw new IllegalArgumentException("Byte overflow!");
-                    }
-                }
-            } else {
-                tmpByte[i] = '0';
-            }
-
+        if (this.decByte + byte2.decByte > MAX_VALUE_DEC){
+            throw new IllegalArgumentException("Byte overflow!");
         }
-        builder = new StringBuilder(String.valueOf(tmpByte));
-        updateDecNumber();
+
+        this.decByte = this.decByte + byte2.decByte;
+        builder = new StringBuilder();
+        this.initBinaryNumber();
     }
 
-    public void sub(ByteB byte2){
-        char[] tmpByte = builder.toString().toCharArray();
-        char[] tmpByte2 = byte2.getBinary().toCharArray();
-        String itemB;
-        String itemB2;
-        for (int i = tmpByte.length; i > 1; i--){
-            itemB = String.valueOf(tmpByte[i]);
-            itemB2 = String.valueOf(tmpByte2[i]);
-            if (itemB2.equals("1") || itemB.equals("1")){
-                tmpByte[i] = '1';
-            } else {
-                tmpByte[i] = '0';
-            }
-
+    public void sub(ByteB byte2) throws IllegalArgumentException{
+        if (this.decByte - byte2.decByte < MIN_VALUE_DEC){
+            throw new IllegalArgumentException("Byte overflow!");
         }
-        builder = new StringBuilder(String.valueOf(tmpByte));
-        updateDecNumber();
+
+        this.decByte = this.decByte - byte2.decByte;
+        builder = new StringBuilder();
+        this.initBinaryNumber();
     }
 
     public int getDecByte() {

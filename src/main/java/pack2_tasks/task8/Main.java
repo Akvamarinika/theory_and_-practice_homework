@@ -23,8 +23,9 @@ public class Main {
 
         ByteB b4 = new ByteB(117);
         System.out.println("b4 " + b4.getBinary());
+        System.out.println("b4 in Dec: " + b4.getDecByte());
 
-        ByteB b5 = new ByteB(25);
+        ByteB b5 = new ByteB(75);
         System.out.println("b5 " + b5.getBinary());
 
         b.not();
@@ -32,22 +33,31 @@ public class Main {
         System.out.println("b not in Dec: " + b.getDecByte());
 
         b.and(b4);
-        System.out.println("b AND in Binary: " + b.getBinary());
+        System.out.println("b AND b4 in Binary: " + b.getBinary());
+        System.out.println("b AND b4 in Binary: " + b.getDecByte());
 
         b.or(b4);
-        System.out.println("b OR in Binary: " + b.getBinary());
-        System.out.println("b OR  in Dec: " + b.getDecByte());
+        System.out.println("b OR b4 in Binary: " + b.getBinary());
+        System.out.println("b OR b4 in Dec: " + b.getDecByte());
 
         try {
-//            b.add(b4);
-//            System.out.println("b + b4 in Binary: " + b.getBinary());
-//            System.out.println("b + b4  in Dec: " + b.getDecByte());
+            b.add(b4);
+            System.out.println("b + b4 in Binary: " + b.getBinary());
+            System.out.println("b + b4  in Dec: " + b.getDecByte());
 
-            b.add(b5);
-            System.out.println("b + b5 in Binary: " + b.getBinary());
-            System.out.println("b + b5 in Dec: " + b.getDecByte());
+//            b.add(b5);
+//            System.out.println("b + b5 in Binary: " + b.getBinary());
+//            System.out.println("b + b5 in Dec: " + b.getDecByte());
+
+            b.sub(b5);
+            System.out.println("b - b5 in Binary: " + b.getBinary());
+            System.out.println("b - b5 in Dec: " + b.getDecByte());
+
+            b.sub(b4);
+            System.out.println("b - b4 in Binary: " + b.getBinary());
+            System.out.println("b - b4  in Dec: " + b.getDecByte());
         } catch (IllegalArgumentException ex) {
-            System.err.println(ex.getMessage());
+            System.err.println("Error: " + ex.getMessage());
         }
 
 
