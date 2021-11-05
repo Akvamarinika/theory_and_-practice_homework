@@ -1,5 +1,7 @@
 package pack2_tasks.task8;
 
+import java.util.Objects;
+
 public class ByteB {
     public static final int MIN_VALUE_DEC = 0;
     public static final int MAX_VALUE_DEC = 255;
@@ -81,9 +83,9 @@ public class ByteB {
 
     }  // 0 to 7
 
-    public char readBit(int bitNum){    // 0 to 7
+    public int readBit(int bitNum){    // 0 to 7
         if (bitNum >= 0 && BINARY_SIZE > bitNum){
-            return builder.charAt(BINARY_SIZE - 1 - bitNum + 2);
+            return Integer.parseInt(Character.toString(builder.charAt(BINARY_SIZE - 1 - bitNum + 2)));
         } else {
             throw new IllegalArgumentException("The bit number can only be from 0 to 7, inclusive.");
         }
@@ -172,5 +174,23 @@ public class ByteB {
 
     public int getDecByte() {
         return decByte;
+    }
+
+    @Override
+    public String toString() {
+        return Integer.toString(decByte);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ByteB byteB = (ByteB) o;
+        return decByte == byteB.decByte;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(decByte);
     }
 }
