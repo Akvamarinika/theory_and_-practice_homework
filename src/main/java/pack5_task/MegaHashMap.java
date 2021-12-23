@@ -27,6 +27,7 @@ public final class MegaHashMap extends HashMap<String, Integer> {
         Map<String, Integer> result = new HashMap<>();
         StringBuilder conditionBuilder = new StringBuilder();
         HashMap<Integer, String> idxCondition = new HashMap<>();
+
         int counterCondition = 0;
         int position = 0;
 
@@ -150,7 +151,7 @@ public final class MegaHashMap extends HashMap<String, Integer> {
                 .replace("(","")
                 .replace(")","");
 
-        var num = true;
+        boolean num = true;
 
         try {
             Double.parseDouble(condit);
