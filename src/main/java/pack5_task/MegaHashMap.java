@@ -3,8 +3,6 @@ package pack5_task;
 import java.util.*;
 
 public final class MegaHashMap extends HashMap<String, Integer> {
-    private boolean isValid = true;
-
     public final int iloc(int index) {
         Map<String, Integer> sortedMap = toSortedMap();
         int idx = 0;
